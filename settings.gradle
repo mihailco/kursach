@@ -1,0 +1,5 @@
+rootProject.name = 'demo'
+
+include ':commons', ':api-gateway',
+        ':course-service', ':discovery-server',
+        ':file-service', ':user-service'
