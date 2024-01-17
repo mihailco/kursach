@@ -18,14 +18,13 @@ public class CourseCollection {
 
     @Id
     ObjectId id;
-    String creatorUserId;
 
     TittlePage tittlePage;
     SecondPage secondPage;
 
     String learningResults;
     Creator creator;
-    List<String> recenzents;
+
     String thisCourseFor;
 
     List<UsedSources> usedSources;

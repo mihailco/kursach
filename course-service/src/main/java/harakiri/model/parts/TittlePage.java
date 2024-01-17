@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class TittlePage {
     String mrsuInfo;
-    String Fio;
+    String fio;
     String tittle;
     String courseType;
     String city;

@@ -13,6 +13,7 @@ import java.util.List;
 public interface CourseRepository extends MongoRepository<CourseCollection, ObjectId>, CourseDao {
 
 
-    @Query(value = "{}", fields = "{'_id': 1, 'creator.fio': 1, 'tittlePage.tittle': 1, 'tittlePage.courseType': 1, 'learningResults': 1, 'createdAt': 1}")
+    @Query(value = "{}", fields = "{'_id': 1, 'tittlePage.fio': 1, 'tittlePage.tittle': 1, 'tittlePage.courseType': 1, 'learningResults': 1, 'createdAt': 1, 'secondPage.thisCourseFor': 1}")
     List<CourseCollection> findAllCourseInfo();
+
 }

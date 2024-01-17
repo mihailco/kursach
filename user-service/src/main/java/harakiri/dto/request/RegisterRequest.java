@@ -10,16 +10,9 @@ import java.util.Objects;
 @Getter
 public class RegisterRequest {
     @NotBlank
-    String name;
+    String fio;
     @NotBlank
     String username;
     @NotBlank
     String password;
-    @NotBlank
-    String confirmPassword;
-
-    @AssertTrue(message = "password and  confirm password should be equals")
-    private boolean isValid() {
-        return Objects.equals(password, confirmPassword);
-    }
 }

@@ -1,7 +1,6 @@
 package harakiri.mapper;
 
 
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -9,12 +8,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class BasicMapper {
 
     private final ModelMapper mapper;
 
-    public <T, S> S convertTo(T data, Class<S> type) {
+   public BasicMapper(ModelMapper mapper) {
+      this.mapper = mapper;
+   }
+
+   public <T, S> S convertTo(T data, Class<S> type) {
         return mapper.map(data, type);
     }
 

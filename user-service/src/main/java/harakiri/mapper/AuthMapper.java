@@ -8,6 +8,7 @@ import harakiri.dto.request.RegisterRequest;
 import harakiri.dto.response.TokenResponse;
 import harakiri.entity.UserEntity;
 import harakiri.entity.UserTokenEntity;
+import harakiri.entity.UserType;
 import harakiri.exceptions.InvalidPasswordException;
 import harakiri.exceptions.NotFoundException;
 import harakiri.security.filter.UserContextHolder;
@@ -18,6 +19,7 @@ import harakiri.service.UserTokenService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -38,6 +40,7 @@ public class AuthMapper {
     public TokenResponse register(RegisterRequest request) {
         UserEntity user = modelMapper.map(request, UserEntity.class);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setUserType(UserType.USER);
         user = userService.register(user);
         return createSaveTokenResponse(user);
     }
@@ -57,7 +60,7 @@ public class AuthMapper {
         if (tokenService.deleteByRefreshToken(request.getRefreshToken()) == 0) {
             throw new InvalidPasswordException("invalid token");
         }
-        long id = jwtUtils.getIdFromJwtToken(accessToken);
+        long id = jwtUtils.getIdFromJwtToken(request.getRefreshToken());
 
         UserEntity user = entityManager.getReference(UserEntity.class, id);
         return createSaveTokenResponse(user);

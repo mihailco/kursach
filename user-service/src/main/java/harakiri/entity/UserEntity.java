@@ -15,11 +15,9 @@ public class UserEntity {
     long id;
     String fio;
     String description;
-
     @Column(unique = true)
     String username;
     String password;
-
     @Enumerated(EnumType.STRING)
     UserType userType;
 

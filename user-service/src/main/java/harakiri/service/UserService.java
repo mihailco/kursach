@@ -1,11 +1,12 @@
 package harakiri.service;
 
 
-import lombok.RequiredArgsConstructor;
-import harakiri.exceptions.NotFoundException;
-import org.springframework.stereotype.Service;
+import harakiri.dto.request.MarkCourseRequest;
 import harakiri.entity.UserEntity;
 import harakiri.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -27,10 +28,12 @@ public class UserService {
     }
 
     public UserEntity updateUser(UserEntity user) {
-        if (userRepository.existsById(user.getId())) {
-            throw new NotFoundException("user not found");
-        }
-        return userRepository.save(user);
+
+        var bdUser = userRepository.getById(user.getId());
+        bdUser.setFio(user.getFio());
+        bdUser.setDescription(user.getDescription());
+        bdUser.setUsername(user.getUsername());
+        return userRepository.save(bdUser);
     }
 
 
@@ -42,11 +45,15 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    @Transactional
     public UserEntity getById(long id) {
         return userRepository.findById(id).orElse(null);
     }
 
     public void deleteById(long id) {
         userRepository.deleteById(id);
+    }
+
+    public void markCourse(MarkCourseRequest markCourseRequest, Long id) {
     }
 }
