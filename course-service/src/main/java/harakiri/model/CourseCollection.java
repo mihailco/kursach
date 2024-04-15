@@ -1,36 +1,36 @@
 package harakiri.model;
 
-import harakiri.model.parts.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "course")
 public class CourseCollection {
-
     @Id
-    ObjectId id;
+    private String id;
 
-    TittlePage tittlePage;
-    SecondPage secondPage;
+    private String FIO;
+    private long creatorId;
 
-    String learningResults;
-    Creator creator;
+    private String tittle;
+    private String courseFor;
+    private String learningResults;
+    private Date createdAt;
 
-    String thisCourseFor;
+    private boolean isBublished;
 
-    List<UsedSources> usedSources;
+    private List<Section> sections;
 
-    Date createdAt = new Date();
-
-    List<Section> sections = new ArrayList<>();
-    List<String> tags = new ArrayList<>();
+    private BigDecimal price;
 }

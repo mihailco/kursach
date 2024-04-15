@@ -1,0 +1,12 @@
+package harakiri.models;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class Subscriberbd {
+    private String id;
+    private String email;
+    private String name;
+}

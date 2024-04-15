@@ -26,11 +26,11 @@ public class CourseDaoImpl implements CourseDao {
       Criteria criteria = new Criteria();
 
       if (searchRequest.getTittle() != null && !searchRequest.getTittle().isBlank()) {
-         criteria = criteria.and("tittlePage.tittle").regex(searchRequest.getTittle(), "i");
+         criteria = criteria.and("tittle").regex(searchRequest.getTittle(), "i");
       }
 
       if (searchRequest.getFio() != null && !searchRequest.getFio().isBlank()) {
-         criteria = criteria.and("creator.fio").regex(searchRequest.getFio(), "i");
+         criteria = criteria.and("FIO").regex(searchRequest.getFio(), "i");
       }
 
       if (searchRequest.getYear() != null) {

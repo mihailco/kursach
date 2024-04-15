@@ -33,6 +33,7 @@ public class UserService {
         bdUser.setFio(user.getFio());
         bdUser.setDescription(user.getDescription());
         bdUser.setUsername(user.getUsername());
+        bdUser.setUserType(user.getUserType());
         return userRepository.save(bdUser);
     }
 

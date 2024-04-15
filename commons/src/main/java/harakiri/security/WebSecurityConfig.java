@@ -66,8 +66,6 @@ public class WebSecurityConfig {
 
                                 "/api/v1/course/all",
                                 "/api/v1/course/search"
-
-
                                 ).permitAll()
                         .anyRequest().permitAll()
                 );

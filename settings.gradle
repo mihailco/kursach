@@ -2,4 +2,6 @@ rootProject.name = 'demo'
 
 include ':commons', ':api-gateway',
         ':course-service', ':discovery-server',
-        ':file-service', ':user-service'
+        ':file-service', ':user-service', ':email-service', 'chat-service'
+
+

@@ -16,7 +16,7 @@ public class BasicMapper {
       this.mapper = mapper;
    }
 
-   public <T, S> S convertTo(T data, Class<S> type) {
+    public <T, S> S convertTo(T data, Class<S> type) {
         return mapper.map(data, type);
     }
 

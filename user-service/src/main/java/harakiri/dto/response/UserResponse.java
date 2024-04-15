@@ -5,10 +5,11 @@ import lombok.Data;
 
 @Data
 public class UserResponse {
-   long id;
-   String fio;
-   String description;
-   String username;
-   UserType userType;
+   private long id;
+   private String fio;
+   private String description;
+   private String username;
+   private String email;
+   private UserType userType;
 
 }

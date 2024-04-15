@@ -12,19 +12,21 @@ import java.util.List;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String fio;
-    String description;
+    private long id;
+    private String fio;
+    private String description;
     @Column(unique = true)
-    String username;
-    String password;
+    private String username;
+    @Column(unique = true)
+    private String email;
+    private String password;
     @Enumerated(EnumType.STRING)
-    UserType userType;
+    private UserType userType;
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    List<UserTokenEntity> tokens;
+    private List<UserTokenEntity> tokens;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    List<UserCourses> courses;
+    private List<UserCourses> courses;
 }

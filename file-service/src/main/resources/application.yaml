@@ -1,6 +1,54 @@
+server:
+  port: 8088
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+#logging:
+#  level:
+#    me.bvn13.openfeign.logger.NormalizedFeignLogger: INFO
+#
+#    org:
+#      springframework: error
+
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+          gateway.route.RouteDefinitionRouteLocator: INFO
+    root: INFO
 
 spring:
   application:
     name: file-service
-  config:
-    import: optional:configserver:http://localhost:8081
+
+
+  data:
+    mongodb:
+      username: admin
+      password: admin
+      authentication-database: admin
+      host: localhost
+      port: 27018
+
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+
+  http:
+    multipart:
+      enabled: true
+  mvc:
+    format:
+      date: yyy-MM-dd
+
