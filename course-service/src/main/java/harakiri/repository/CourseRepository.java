@@ -1,6 +1,6 @@
 package harakiri.repository;
 
-import harakiri.model.CourseCollection;
+import harakiri.model.course.CourseCollection;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

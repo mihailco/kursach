@@ -3,7 +3,7 @@ package harakiri.service;
 import harakiri.dto.request.CreateCourseRequest;
 import harakiri.dto.request.SearchCourseRequest;
 import harakiri.kafka.messages.UserMessage;
-import harakiri.model.CourseCollection;
+import harakiri.model.course.CourseCollection;
 import harakiri.repository.CourseRepository;
 import harakiri.entity.CourseInfoResponse;
 import harakiri.entity.MarkedCoursesResponse;

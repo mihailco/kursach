@@ -5,7 +5,7 @@ import harakiri.dto.request.CreateCourseRequest;
 import harakiri.entity.CourseInfoResponse;
 import harakiri.entity.MarkedCoursesResponse;
 import harakiri.exceptions.AccessDeniedException;
-import harakiri.model.CourseCollection;
+import harakiri.model.course.CourseCollection;
 import harakiri.security.filter.UserContextHolder;
 import harakiri.service.CourseService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package harakiri.repository.Impl;
 
 import harakiri.dto.request.SearchCourseRequest;
-import harakiri.model.CourseCollection;
+import harakiri.model.course.CourseCollection;
 import harakiri.repository.CourseDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;

@@ -1,4 +1,4 @@
-package harakiri.model;
+package harakiri.model.course;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package harakiri.repository;
 
 import harakiri.dto.request.SearchCourseRequest;
-import harakiri.model.CourseCollection;
+import harakiri.model.course.CourseCollection;
 
 import java.util.List;
 
