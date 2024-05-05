@@ -5,7 +5,6 @@ public enum QuestionType {
     MULTIPLE_CHOICE,
     SEQUENSE,
     JUXTAPOSITION,
-    TRUE_FALSE,
     TEXT,
     CODE,
 
