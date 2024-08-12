@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class CheckAnswerRequest {
-    List<Answer> answerList;
+    private String testId;
+    private List<Answer> answerList;
 }
 

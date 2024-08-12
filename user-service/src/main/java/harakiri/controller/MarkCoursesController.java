@@ -35,8 +35,8 @@ public class MarkCoursesController {
 
 
     @GetMapping("/all")
-    public List<MarkedCoursesResponse> getAllMarkedCourses() {
-        return markCourse.getAll();
+    public ResponseEntity<List<MarkedCoursesResponse> >getAllMarkedCourses() {
+        return ResponseEntity.ok( markCourse.getAll());
     }
 
     @DeleteMapping("/{id}")

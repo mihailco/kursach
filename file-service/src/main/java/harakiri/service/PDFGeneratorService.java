@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -54,19 +55,22 @@ public class PDFGeneratorService {
         Font fontParagraph = new Font(getBaseFont(), 14);
 
 
-        Paragraph headerParagraph = new Paragraph("Выписка из личного кабинета", fontHeader);
+        Paragraph headerParagraph = new Paragraph("Каталог", fontHeader);
         headerParagraph.setAlignment(Paragraph.ALIGN_CENTER);
 
         document.add(headerParagraph);
         var courses = courseServiceRemote.getCourses();
         for (CourseInfoResponse i : courses) {
+            var price = i.getPrice();
+            if (price == null)
+                price= BigDecimal.ZERO;
             Paragraph pdfParagraph = new Paragraph(i.getTittle(), fontHeader);
             pdfParagraph.setAlignment(Paragraph.ALIGN_LEFT);
-            document.add(new Paragraph(i.getPrice().toString(), fontParagraph));
+            document.add(new Paragraph(price.toString(), fontParagraph));
             document.add(new Paragraph(i.getFIO(), fontParagraph));
             document.add(new Paragraph(i.getCreatedAt().toString(), fontParagraph));
-            document.add(new Paragraph(i.getCourseFor().toString(), fontParagraph));
-            document.add(new Paragraph(i.getLearningResults().toString(), fontParagraph));
+            document.add(new Paragraph(i.getCourseFor(), fontParagraph));
+            document.add(new Paragraph(i.getLearningResults(), fontParagraph));
 
             document.add(new Paragraph("\n", fontHeader));
 
@@ -131,6 +135,6 @@ public class PDFGeneratorService {
 
     public BaseFont getBaseFont() throws IOException {
         return
-                BaseFont.createFont("C:\\Users\\mihai\\IdeaProjects\\kursach2\\file-service\\src\\main\\resources\\Alice-Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                BaseFont.createFont("E:\\university\\kursach2\\file-service\\src\\main\\resources\\Alice-Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
     }
 }

@@ -1,10 +1,8 @@
 package harakiri.controller;
 
-import harakiri.model.test.TestCollection;
-import harakiri.model.test.TestHistoryCollection;
+import harakiri.entity.test.TestCollection;
 import harakiri.service.TestService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,21 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/course/test")
 public class TestController {
 
-    private final TestService testService;
+   private final TestService testService;
 
-    @PostMapping
-    public ResponseEntity<?> createTest(@RequestBody TestCollection collection) {
-        testService.save(collection);
-        return ResponseEntity.ok("created");
-    }
+   @PostMapping
+   public TestCollection createTest(@RequestBody TestCollection collection) {
+      return testService.save(collection);
+   }
 
-    @GetMapping("/{id}")
-    public TestCollection getTestById(@PathVariable String id){
-        return testService.getbyId(id);
-    }
+   @GetMapping("/{id}")
+   public TestCollection getTestById(@PathVariable String id) {
+      return testService.getbyId(id);
+   }
 
-    @DeleteMapping("/{id]")
-    public void deleteTestById(@PathVariable String id){
-        testService.deleteById(id);
-    }
+   @DeleteMapping("/{id}")
+   public void deleteTestById(@PathVariable String id) {
+      testService.deleteById(id);
+   }
 }

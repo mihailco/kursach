@@ -3,7 +3,7 @@ package harakiri.mapper;
 import harakiri.dto.api.respose.ConvertedFileResponse;
 import harakiri.dto.api.respose.File;
 import harakiri.dto.response.SaveFileResponse;
-import harakiri.model.FileDB;
+import harakiri.entity.FileDB;
 import harakiri.security.filter.UserContextHolder;
 import harakiri.service.FileService;
 import lombok.RequiredArgsConstructor;

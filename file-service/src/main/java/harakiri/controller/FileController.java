@@ -3,7 +3,7 @@ package harakiri.controller;
 import harakiri.dto.response.ResponseMessage;
 import harakiri.dto.response.SaveFileResponse;
 import harakiri.mapper.FileMapper;
-import harakiri.model.FileDB;
+import harakiri.entity.FileDB;
 import harakiri.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

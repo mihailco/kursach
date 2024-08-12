@@ -2,8 +2,10 @@ package harakiri.controller;
 
 import harakiri.dto.request.CheckAnswerRequest;
 import harakiri.dto.response.BeginTestResponse;
-import harakiri.dto.response.TestResultResponse;
-import harakiri.model.test.TestCollection;
+import harakiri.dto.response.TestInfo;
+import harakiri.entity.test.TestCollection;
+import harakiri.entity.test.TestHistoryCollection;
+import harakiri.exceptions.AccessDeniedException;
 import harakiri.security.filter.UserContextHolder;
 import harakiri.service.TestService;
 import harakiri.service.TestValidationService;
@@ -15,18 +17,26 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/course/test-exec")
 public class TestExecutingController {
-    private final TestService testService;
-    private final UserSessionService userSessionService;
-    private final TestValidationService testValidationService;
+   private final TestService testService;
+   private final UserSessionService userSessionService;
+   private final TestValidationService testValidationService;
 
-    @PostMapping("/begin/{testId}")
-    public BeginTestResponse beginTest(@PathVariable String testId) {
-        return userSessionService.beginTest(testId, UserContextHolder.getId());
-    }
+   @GetMapping("/begin/{testId}")
+   public BeginTestResponse beginTest(@PathVariable String testId) throws AccessDeniedException {
+      return userSessionService.beginTest(testId, UserContextHolder.getId());
+   }
 
-    @PostMapping("/validate/{testId}")
-    public TestResultResponse validateTest(@RequestBody CheckAnswerRequest checkAnswerRequest, @PathVariable String testId){
-        return testValidationService.valid(checkAnswerRequest, UserContextHolder.getId(), testId);
-    }
+   @GetMapping("/info/{testId}")
+   public TestCollection getTestinfo(@PathVariable String testId) throws AccessDeniedException {
+      return userSessionService.getTestInfo(testId, UserContextHolder.getId());
+   }
 
+   @PostMapping("/submit")
+   public TestHistoryCollection submitTest(@RequestBody TestCollection testCollection) {
+      var t = testValidationService.valid(testCollection, UserContextHolder.getId());
+      userSessionService.deleteSession(testCollection.getId(), String.valueOf(UserContextHolder.getId()));
+      return t;
+   }
 }
+
+
