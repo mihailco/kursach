@@ -13,4 +13,6 @@ public class TestHistoryService {
    public TestHistoryCollection save(TestHistoryCollection res) {
    return testHistoryRepository.save(res);
    }
+
+   public TestHistoryCollection findById(String id) {return testHistoryRepository.findById(id).orElse(null);}
 }

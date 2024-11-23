@@ -7,6 +7,7 @@ import harakiri.entity.test.TestCollection;
 import harakiri.entity.test.TestHistoryCollection;
 import harakiri.exceptions.AccessDeniedException;
 import harakiri.security.filter.UserContextHolder;
+import harakiri.service.TestHistoryService;
 import harakiri.service.TestService;
 import harakiri.service.TestValidationService;
 import harakiri.service.UserSessionService;
@@ -20,6 +21,7 @@ public class TestExecutingController {
    private final TestService testService;
    private final UserSessionService userSessionService;
    private final TestValidationService testValidationService;
+   private final TestHistoryService testHistoryService;
 
    @GetMapping("/begin/{testId}")
    public BeginTestResponse beginTest(@PathVariable String testId) throws AccessDeniedException {
@@ -37,6 +39,9 @@ public class TestExecutingController {
       userSessionService.deleteSession(testCollection.getId(), String.valueOf(UserContextHolder.getId()));
       return t;
    }
+
+   @GetMapping("/history/{id}")
+   public TestHistoryCollection getTestHistoryById(@PathVariable String id) {
+       return testHistoryService.findById(id);
+   }
 }
-
-

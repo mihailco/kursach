@@ -10,26 +10,31 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class TestService {
-   private final TestRepository testRepository;
+    private final TestRepository testRepository;
 
-   public void addTestTaking(TestTaking testTaking, String testId) {
-      testRepository.addTestTaking(testTaking, testId);
-   }
+    public void addTestTaking(TestTaking testTaking, String testId) {
+        testRepository.addTestTaking(testTaking, testId);
+    }
 
-   public TestCollection save(TestCollection collection) {
-      return testRepository.save(collection);
-   }
+    public TestCollection save(TestCollection collection) {
+        if (collection.getQuestionList() != null)
+            collection.getQuestionList().forEach(question -> {
+                if (question.getId() == null)
+                    question.setId(new ObjectId().toString());
+            });
+        return testRepository.save(collection);
+    }
 
-   public TestCollection getbyId(String id) {
-      var  t = testRepository.findById(id).orElse(null);
-      return t;
-   }
+    public TestCollection getbyId(String id) {
+        var t = testRepository.findById(id).orElse(null);
+        return t;
+    }
 
-   public void deleteById(String id) {
-      testRepository.deleteById((id));
-   }
+    public void deleteById(String id) {
+        testRepository.deleteById((id));
+    }
 
-   public TestCollection getTestInfo(String testId, String userId) {
-      return testRepository.getTestInfo(testId, userId);
-   }
+    public TestCollection getTestInfo(String testId, String userId) {
+        return testRepository.getTestInfo(testId, userId);
+    }
 }

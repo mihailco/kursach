@@ -74,7 +74,6 @@ public class CourseController {
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
 
-    ///ищет курсы по их айдишникам
     @PostMapping("/report")
     public ResponseEntity<List<CourseInfoResponse>> reportCourses(@RequestBody MarkedCoursesResponse[] searchRequest) {
         List<CourseInfoResponse> searchResults = courseService.searchCourses(searchRequest);

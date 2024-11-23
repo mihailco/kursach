@@ -10,6 +10,7 @@ import java.util.Date;
 @Builder
 public class TestTaking {
    private String userId;
+   private String resultId;
    private Date date;
    private double res;
 }

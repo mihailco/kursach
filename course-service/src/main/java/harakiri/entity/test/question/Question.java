@@ -7,10 +7,10 @@ import java.util.List;
 
 @Data
 public class Question {
-   private String id = new ObjectId().toString();
+   private String id;
 
    private QuestionType questionType;
-   private double questionPoints;
+   private double questionPoints = 1;
 
    private String questionText;
 

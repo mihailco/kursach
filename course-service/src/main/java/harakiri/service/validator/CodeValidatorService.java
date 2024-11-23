@@ -1,21 +1,15 @@
 package harakiri.service.validator;
 
-import harakiri.dto.request.Answer;
-import harakiri.dto.request.ExecuteCodeRequest;
 import harakiri.dto.response.ExecuteCodeResponse;
 import harakiri.entity.test.question.CodeTestCase;
 import harakiri.entity.test.question.Question;
-import org.apache.xmlbeans.impl.xb.ltgfmt.TestCase;
 import org.python.core.Py;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CodeValidatorService extends AnswerValidator {

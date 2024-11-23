@@ -1,6 +1,5 @@
 server:
-  port: 0
-
+  port: 8090
 eureka:
   instance:
     prefer-ip-address: true
@@ -16,6 +15,9 @@ logging:
       springframework: ERROR
 
 spring:
+  ai:
+    openai:
+      api-key: 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
   application:
     name: course-service
 
@@ -24,7 +26,7 @@ spring:
       username: admin
       password: admin
       authentication-database: admin
-      host: localhost
+      host: 46.8.29.63
       port: 27019
       repositories:
         enabled: true
@@ -40,3 +42,8 @@ spring.kafka:
   producer:
     key-serializer: org.apache.kafka.common.serialization.LongSerializer
     value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+token:
+  iam: t1.9euelZrJxpjOmI-eio3HyJiNi5yKy-3rnpWamJ6Jy8_KzI-eyZaLkpvLxozl9PcwGTZG-e8DLzqw3fT3cEczRvnvAy86sM3n9euelZqKnZeJjIvIkpaNiomaz86Yj-_8xeuelZqKnZeJjIvIkpaNiomaz86Yjw.4ENQq6hpxZ6vxzT89bC-2szbnVf10OWKQBeQrl1wcd9pDzJUoDvkFNxyKg3p8LS2aAOcby7rXy7KIO_ZkiqnBQ
+  folderId: b1gebvniis9kf6dhlm57

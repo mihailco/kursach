@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
+
 @Repository
 @RequiredArgsConstructor
 public class TestDaoImpl implements TestDao {
@@ -30,16 +32,20 @@ public class TestDaoImpl implements TestDao {
    public TestCollection getTestInfo(String testId, String userId) {
       Criteria c = Criteria.where("_id").is(testId);
 
-      Criteria.where("testTakings").elemMatch(Criteria.where("userId").is(userId));
-
       Query q = Query.query(c);
 
       q.fields().exclude(
               "questionList.correctText",
               "questionList.chooseOption.isCorrect",
-              "questionList.sequenceOptions.n"
+              "questionList.sequenceOptions.n",
+              "questionList.chooseOption.correct"
       );
 
-      return mongoTemplate.findOne(q, TestCollection.class);
+      var test =  mongoTemplate.findOne(q, TestCollection.class);
+       var testTakings = test.getTestTakings().stream()
+               .filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+       test.setTestTakings(testTakings);
+
+      return test;
    }
 }

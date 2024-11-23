@@ -22,7 +22,7 @@ public class SequenceValidator extends AnswerValidator {
         }
 
         for (int i = 0; i < correctSequence.size(); i++) {
-            if (!userSequence.get(i).getId().equals(correctSequence.get(i).getId())) {
+            if (!userSequence.get(i).getText().equals(correctSequence.get(i).getText())) {
                 return false;
             }
         }

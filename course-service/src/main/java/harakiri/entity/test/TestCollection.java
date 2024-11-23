@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -15,7 +16,7 @@ public class TestCollection {
     private String name;
     private String description;
 
-    private List<Question> questionList;
-    private List<TestTaking> testTakings;
+    private List<Question> questionList = Collections.emptyList();
+    private List<TestTaking> testTakings = Collections.emptyList();
     private TestSettings testSettings = new TestSettings();
 }
