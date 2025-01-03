@@ -13,12 +13,13 @@ import java.util.Arrays;
 public class YandexService {
     private final YandexProperties yandexProperties;
     private final YandexFeignClient yandexFeignClient;
+    private final  TokenService tokenService;
 
     public String requestCompletion(String prompt) {
         PromptRequest promptRequest = buildRequest(prompt);
 
         return yandexFeignClient.
-                getCompletion("Bearer " + yandexProperties.getIam(),
+                getCompletion("Bearer " + tokenService.getCurrentToken(),
                         yandexProperties.getFolderId(),
                         promptRequest
                 ).getResult().getAlternatives().stream().findFirst()
